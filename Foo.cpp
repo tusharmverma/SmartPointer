@@ -1,23 +1,23 @@
 /**
  * @file        Foo.cpp
- * 
+ *
  * @brief       Implementations for the generic Foo class.
- * 
- * @detailed    Foo is simply designed to report when constructed and 
- *              destroyed, and each Foo object has a unique serial 
+ *
+ * @detailed    Foo is simply designed to report when constructed and
+ *              destroyed, and each Foo object has a unique serial
  *              number, so they can be tracked.
  */
 #include "Foo.h"
 
 /**
- * c-tor for `Foo` that allows an optional string "tag" to be 
+ * c-tor for `Foo` that allows an optional string "tag" to be
  * attached in addition to the serial number of the object.
  * The construction of the object will be announced to stdout.
  */
-Foo::Foo(const std::string& tag) 
+Foo::Foo(const std::string& tag)
 : _serial{++_count}, _tag{tag} {
     // If tag is empty, set it to the serial number
-    std::cout << "*  c-tor - Foo S#: " << _serial 
+    std::cout << "*  c-tor - Foo S#: " << _serial
               << (_tag.length() > 0 ? " Tag: " : "")
               << _tag << "\n";
 }
@@ -25,8 +25,8 @@ Foo::Foo(const std::string& tag)
 /**
  * d-tor for `Foo` reports the object's demise to stdout
  */
-Foo::~Foo() { 
-    std::cout << "*  d-tor - Foo S#: " << _serial 
+Foo::~Foo() {
+    std::cout << "*  d-tor - Foo S#: " << _serial
               << (_tag.length() > 0 ? " Tag: " : "")
               << _tag << "\n";
 }
@@ -35,8 +35,8 @@ Foo::~Foo() {
  * get the serial number for this `Foo` instance
  * @return serial number is returned
  */
-int Foo::serial() const { 
-    return _serial;                                             
+int Foo::serial() const {
+    return _serial;
 }
 
 /**
@@ -55,7 +55,7 @@ int Foo::_count = 0;
  * into a `std::ostream`
  * @param   s   stream to write the object into
  * @param   f   Foo object to write into the stream
- * @return  the modified stream `s` is returned   
+ * @return  the modified stream `s` is returned
  */
 std::ostream& operator<< (std::ostream& s, const Foo& f){
     return s << "[Foo instance #" << f.serial() << "]";
